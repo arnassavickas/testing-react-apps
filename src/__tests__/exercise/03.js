@@ -3,8 +3,9 @@
 
 import * as React from 'react'
 // 🐨 add `screen` to the import here:
-import {screen, render, userEvent} from '@testing-library/react'
+import {screen, render} from '@testing-library/react'
 import Counter from '../../components/counter'
+import userEvent from '@testing-library/user-event'
 
 test('counter increments and decrements when the buttons are clicked', () => {
   render(<Counter />)
@@ -12,7 +13,7 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // 💰 you can use `getByText` for each of these (`getByRole` can work for the button too)
   const increment = screen.getByText('Increment')
   const decrement = screen.getByText('Decrement')
-  const message = screen.getByText('Current count:')
+  const message = screen.getByText(/Current count/)
 
   expect(message).toHaveTextContent('Current count: 0')
   userEvent.click(increment)
